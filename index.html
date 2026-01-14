@@ -1,654 +1,312 @@
 <!doctype html>
-
-<html lang="en">
-
+<html lang="en" data-bs-theme="dark">
 <head>
-
   <meta charset="utf-8">
-
   <meta name="viewport" content="width=device-width, initial-scale=1">
-
-  <title>Fawaz Hasan - Cybersecurity Enthusiast</title>
-
-  <!-- Bootstrap 5 CSS -->
+  <title>Fawaz Hassan – Cybersecurity Enthusiast</title>
 
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-
-  <!-- Font Awesome -->
-
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-
-  <!-- AOS Animations -->
-
   <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
 
   <style>
-
     :root {
-
-      --accent: #f4511e;      /* Warm orange/red - classic John Doe accent */
-
-      --dark: #333;
-
-      --gray: #555;
-
-      --light-bg: #f8f9fa;
-
+      --bg: #0d1117;
+      --card-bg: rgba(22, 27, 34, 0.65);
+      --text: #c9d1d9;
+      --accent: #00ff9d;      /* HTB-inspired cyan/teal */
+      --accent-dark: #00b37a;
+      --glow: rgba(0, 255, 157, 0.25);
     }
-
     body {
-
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-
-      color: var(--dark);
-
-      background: var(--light-bg);
-
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Segoe UI', system-ui, sans-serif;
     }
-
-    .hero {
-
-      background: #fff;
-
-      padding: 180px 0 140px;
-
-      text-align: center;
-
-      border-bottom: 1px solid #eee;
-
+    .glass-card {
+      background: var(--card-bg);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 16px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.5);
+      transition: all 0.4s ease;
     }
-
-    .hero h1 {
-
-      font-size: 5rem;
-
-      font-weight: 900;
-
-      color: var(--dark);
-
-      margin-bottom: 1rem;
-
-    }
-
-    .hero .lead {
-
-      font-size: 1.8rem;
-
-      color: var(--gray);
-
-      margin-bottom: 2rem;
-
-    }
-
-    .btn-accent {
-
-      background: var(--accent);
-
-      border: none;
-
-      color: white;
-
-      padding: 12px 40px;
-
-      font-size: 1.2rem;
-
-      transition: all 0.3s;
-
-    }
-
-    .btn-accent:hover {
-
-      background: #d84315;
-
-      transform: translateY(-3px);
-
-    }
-
-    .section-title {
-
-      font-weight: 700;
-
-      margin: 5rem 0 3rem;
-
-      text-align: center;
-
-      position: relative;
-
-    }
-
-    .section-title::after {
-
-      content: '';
-
-      width: 80px;
-
-      height: 4px;
-
-      background: var(--accent);
-
-      position: absolute;
-
-      bottom: -15px;
-
-      left: 50%;
-
-      transform: translateX(-50%);
-
-    }
-
-    .card {
-
-      border: none;
-
-      box-shadow: 0 5px 20px rgba(0,0,0,0.08);
-
-      transition: all 0.3s;
-
-      border-radius: 8px;
-
-    }
-
-    .card:hover {
-
-      box-shadow: 0 15px 35px rgba(0,0,0,0.12);
-
+    .glass-card:hover {
       transform: translateY(-8px);
-
+      box-shadow: 0 16px 48px var(--glow);
+      border-color: var(--accent);
     }
-
-    .skill-progress {
-
-      height: 10px;
-
-      background: #e9ecef;
-
-      border-radius: 5px;
-
-      margin-top: 0.6rem;
-
-      overflow: hidden;
-
-    }
-
-    .progress-fill {
-
-      height: 100%;
-
-      background: var(--accent);
-
-      transition: width 1.5s ease;
-
-    }
-
-    .timeline-item {
-
+    .section-title {
+      color: var(--accent);
+      font-weight: 700;
       position: relative;
-
-      padding-left: 2.5rem;
-
-      margin-bottom: 3rem;
-
+      display: inline-block;
+      margin-bottom: 2.5rem;
     }
-
-    .timeline-item::before {
-
+    .section-title::after {
       content: '';
-
       position: absolute;
-
-      left: 0.8rem;
-
-      top: 0;
-
-      bottom: -3rem;
-
-      width: 3px;
-
-      background: #ddd;
-
+      bottom: -10px;
+      left: 0;
+      width: 70%;
+      height: 3px;
+      background: linear-gradient(90deg, var(--accent), transparent);
+      border-radius: 3px;
     }
-
-    .timeline-dot {
-
-      width: 16px;
-
-      height: 16px;
-
+    .btn-cyber {
       background: var(--accent);
-
-      border-radius: 50%;
-
-      position: absolute;
-
-      left: 0.65rem;
-
-      top: 0.4rem;
-
+      border: none;
+      color: #0d1117;
+      font-weight: 600;
+      padding: 12px 32px;
+      border-radius: 50px;
+      transition: all 0.3s;
     }
-
-    .last::before { display: none; }
-
-    @media (max-width: 768px) {
-
-      .hero h1 { font-size: 3.5rem; }
-
-      .hero { padding: 120px 0 80px; }
-
+    .btn-cyber:hover {
+      background: var(--accent-dark);
+      transform: translateY(-3px);
+      box-shadow: 0 8px 25px var(--glow);
     }
-
+    .skill-bar {
+      height: 10px;
+      background: rgba(255,255,255,0.08);
+      border-radius: 5px;
+      overflow: hidden;
+    }
+    .progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #00ff9d, #00d4ff);
+      transition: width 1.8s ease-out;
+    }
+    .timeline-dot {
+      width: 16px;
+      height: 16px;
+      background: var(--accent);
+      border: 3px solid #0d1117;
+      box-shadow: 0 0 0 4px rgba(0,255,157,0.2);
+    }
+    .timeline-line {
+      background: rgba(0,255,157,0.15);
+    }
+    .nav-link {
+      color: var(--text) !important;
+      transition: color 0.3s;
+    }
+    .nav-link:hover, .nav-link.active {
+      color: var(--accent) !important;
+    }
+    .learning-note {
+      font-size: 0.9rem;
+      color: #8b949e;
+      margin-top: 0.5rem;
+      font-style: italic;
+    }
   </style>
-
 </head>
-
 <body>
 
-  <!-- Hero Header -->
-
-  <section class="hero">
-
-    <div class="container">
-
-      <h1>HAFIZ M.FAWAZ HASAN</h1>
-
-      <p class="lead">BSCS Student | Cybersecurity Enthusiast & Operations Specialist</p>
-
-      <div class="mb-4">
-
-        <a href="#" class="mx-3 fs-3 text-dark"><i class="fab fa-linkedin"></i></a>
-
-        <a href="mailto:fawazhasan951@gmail.com" class="mx-3 fs-3 text-dark"><i class="fas fa-envelope"></i></a>
-
-        <a href="#" class="mx-3 fs-3 text-dark"><i class="fab fa-github"></i></a>
-
-      </div>
-
-      <a href="#" class="btn btn-accent btn-lg">Download Resume (PDF)</a>
-
+<!-- Hero -->
+<section class="py-5 text-center" style="background: linear-gradient(135deg, #0d1117 0%, #161b22 100%); min-height: 70vh; display: flex; align-items: center;">
+  <div class="container">
+    <h1 class="display-3 fw-bold mb-3" style="color: var(--accent);">FAWAZ HASSAN</h1>
+    <p class="lead fs-4 mb-4" style="color: #a5d6ff;">BSCS Student • Cybersecurity Enthusiast • Operations Specialist</p>
+    
+    <div class="d-flex justify-content-center gap-4 mb-5 fs-3">
+      <a href="#" class="text-decoration-none" style="color: var(--text);"><i class="fab fa-linkedin"></i></a>
+      <a href="mailto:fawazhasan951@gmail.com" class="text-decoration-none" style="color: var(--text);"><i class="fas fa-envelope"></i></a>
+      <a href="#" class="text-decoration-none" style="color: var(--text);"><i class="fab fa-github"></i></a>
     </div>
+    
+    <a href="#" class="btn btn-cyber btn-lg px-5">Download PDF Resume</a>
+  </div>
+</section>
 
-  </section>
-
-  <!-- Navigation -->
-
-  <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm fixed-top">
-
-    <div class="container">
-
-      <a class="navbar-brand fw-bold text-dark" href="#">Fawaz</a>
-
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#nav">
-
-        <span class="navbar-toggler-icon"></span>
-
-      </button>
-
-      <div class="collapse navbar-collapse" id="nav">
-
-        <ul class="navbar-nav ms-auto">
-
-          <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
-
-          <li class="nav-item"><a class="nav-link" href="#skills">Skills</a></li>
-
-          <li class="nav-item"><a class="nav-link" href="#experience">Experience</a></li>
-
-          <li class="nav-item"><a class="nav-link" href="#education">Education</a></li>
-
-          <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
-
-        </ul>
-
-      </div>
-
+<!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top" style="background: rgba(13,17,23,0.85); backdrop-filter: blur(10px);">
+  <div class="container">
+    <a class="navbar-brand fw-bold" href="#" style="color: var(--accent);">Fawaz</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+        <li class="nav-item"><a class="nav-link" href="#skills">Skills</a></li>
+        <li class="nav-item"><a class="nav-link" href="#experience">Experience</a></li>
+        <li class="nav-item"><a class="nav-link" href="#education">Education</a></li>
+        <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
+      </ul>
     </div>
+  </div>
+</nav>
 
-  </nav>
-
-  <!-- About -->
-
-  <section id="about" class="py-5">
-
-    <div class="container">
-
-      <h2 class="section-title">Professional Summary</h2>
-
-      <div class="row justify-content-center">
-
-        <div class="col-lg-10 text-center" data-aos="fade-up">
-
-          <p class="lead">
-
-            Motivated BSCS student with hands-on lab experience in cybersecurity fundamentals (Hack The Box, TryHackMe SOC Level 1) and 10+ months in high-pressure international operations and logistics. Skilled in system enumeration, network traffic analysis, Linux operations, and real-time troubleshooting. Proven ability to thrive in demanding environments — directly transferable to SOC monitoring, incident response, and security operations.
-
-          </p>
-
-          <p class="mt-4">
-
-            <strong>Location:</strong> Bahria Town, Lahore, Pakistan<br>
-
-            <strong>Contact:</strong> +92 336 4145991 | fawazhasan951@gmail.com
-
-          </p>
-
-        </div>
-
+<!-- About -->
+<section id="about" class="py-5">
+  <div class="container">
+    <h2 class="section-title">Professional Summary</h2>
+    <div class="row justify-content-center">
+      <div class="col-lg-10 glass-card p-4" data-aos="fade-up">
+        <p class="lead">
+          Motivated BSCS student with hands-on lab experience in cybersecurity fundamentals and 10+ months in high-pressure international operations and logistics. 
+          Actively building expertise in system enumeration, network traffic analysis, Linux operations, and real-time troubleshooting. 
+          Proven ability to thrive in demanding night-shift environments — directly transferable to SOC monitoring, incident response, and security operations.
+        </p>
       </div>
-
     </div>
+  </div>
+</section>
 
-  </section>
-
-  <!-- Skills -->
-
-  <section id="skills" class="py-5 bg-light">
-
-    <div class="container">
-
-      <h2 class="section-title">Technical Skills</h2>
-
-      <div class="row g-5">
-
-        <div class="col-md-6" data-aos="fade-up">
-
+<!-- Skills -->
+<section id="skills" class="py-5">
+  <div class="container">
+    <h2 class="section-title">Technical Skills</h2>
+    <div class="row g-4">
+      <div class="col-md-6" data-aos="fade-right">
+        <div class="glass-card p-4">
           <h5>Linux & Networking</h5>
-
-          <div class="skill-progress"><div class="progress-fill" style="width:85%"></div></div>
-
+          <div class="skill-bar"><div class="progress-fill" style="width:85%"></div></div>
+          <p class="learning-note">Actively learning and building hands-on experience</p>
         </div>
-
-        <div class="col-md-6" data-aos="fade-up" data-aos-delay="100">
-
+      </div>
+      <div class="col-md-6" data-aos="fade-left">
+        <div class="glass-card p-4">
           <h5>Cybersecurity Labs (HTB / TryHackMe)</h5>
-
-          <div class="skill-progress"><div class="progress-fill" style="width:75%"></div></div>
-
+          <div class="skill-bar"><div class="progress-fill" style="width:75%"></div></div>
+          <p class="learning-note">Currently progressing through SOC Level 1 and Tier 1 machines</p>
         </div>
-
-        <div class="col-md-6" data-aos="fade-up" data-aos-delay="200">
-
+      </div>
+      <div class="col-md-6" data-aos="fade-right" data-aos-delay="200">
+        <div class="glass-card p-4">
           <h5>English Communication (Fluent)</h5>
-
-          <div class="skill-progress"><div class="progress-fill" style="width:95%"></div></div>
-
+          <div class="skill-bar"><div class="progress-fill" style="width:95%"></div></div>
         </div>
-
-        <div class="col-md-6" data-aos="fade-up" data-aos-delay="300">
-
+      </div>
+      <div class="col-md-6" data-aos="fade-left" data-aos-delay="200">
+        <div class="glass-card p-4">
           <h5>Graphic Design</h5>
-
-          <div class="skill-progress"><div class="progress-fill" style="width:90%"></div></div>
-
+          <div class="skill-bar"><div class="progress-fill" style="width:90%"></div></div>
+          <p class="learning-note">Actively learning and applying visual composition & branding</p>
         </div>
+      </div>
+    </div>
+  </div>
+</section>
 
+<!-- Experience -->
+<section id="experience" class="py-5 bg-black bg-opacity-50">
+  <div class="container">
+    <h2 class="section-title">Professional Experience</h2>
+    <div class="timeline">
+      <div class="timeline-item glass-card p-4 mb-5" data-aos="fade-up">
+        <div class="timeline-dot"></div>
+        <h5>Vehicle Brokerage Specialist</h5>
+        <p class="text-muted mb-2">Jul 2025 – Present • Lahore</p>
+        <ul class="mb-0">
+          <li>Managed end-to-end international brokerage operations</li>
+          <li>Negotiated high-value deals with US/global clients</li>
+          <li>Maintained digital documentation for compliance</li>
+        </ul>
       </div>
 
-    </div>
-
-  </section>
-
-  <!-- Experience -->
-
-  <section id="experience" class="py-5">
-
-    <div class="container">
-
-      <h2 class="section-title">Professional Experience</h2>
-
-      <div class="row justify-content-center">
-
-        <div class="col-lg-10">
-
-          <div class="timeline-item" data-aos="fade-up">
-
-            <div class="timeline-dot"></div>
-
-            <div class="card">
-
-              <div class="card-body">
-
-                <h5>Vehicle Brokerage Specialist</h5>
-
-                <p class="text-muted mb-2">Jul 2025 – Present (6 months) • Lahore</p>
-
-                <ul class="mb-0">
-
-                  <li>Managed end-to-end international brokerage operations</li>
-
-                  <li>Negotiated high-value deals with US/global clients</li>
-
-                  <li>Maintained digital documentation for compliance</li>
-
-                </ul>
-
-              </div>
-
-            </div>
-
-          </div>
-
-          <div class="timeline-item" data-aos="fade-up" data-aos-delay="200">
-
-            <div class="timeline-dot"></div>
-
-            <div class="card">
-
-              <div class="card-body">
-
-                <h5>Freight Dispatcher (International US Campaign)</h5>
-
-                <p class="text-muted mb-2">Mar 2025 – Jun 2025 (4 months) • Lahore</p>
-
-                <ul class="mb-0">
-
-                  <li>Coordinated night-shift freight logistics</li>
-
-                  <li>Optimized routes and handled negotiations</li>
-
-                  <li>Troubleshot operational issues in real-time</li>
-
-                </ul>
-
-              </div>
-
-            </div>
-
-          </div>
-
-          <div class="timeline-item last" data-aos="fade-up" data-aos-delay="400">
-
-            <div class="timeline-dot"></div>
-
-            <div class="card">
-
-              <div class="card-body">
-
-                <h5>Customer Support Agent (Live Chat)</h5>
-
-                <p class="text-muted mb-2">Dec 2024 – Feb 2025 (3 months) • Lahore</p>
-
-                <ul class="mb-0">
-
-                  <li>Provided real-time technical support to global users</li>
-
-                  <li>Resolved complex queries with high satisfaction</li>
-
-                </ul>
-
-              </div>
-
-            </div>
-
-          </div>
-
-        </div>
-
+      <div class="timeline-item glass-card p-4 mb-5" data-aos="fade-up" data-aos-delay="200">
+        <div class="timeline-dot"></div>
+        <h5>Freight Dispatcher (International Campaign)</h5>
+        <p class="text-muted mb-2">Mar 2025 – Jun 2025 • Lahore</p>
+        <ul class="mb-0">
+          <li>Coordinated real-time US freight during night shifts</li>
+          <li>Optimized routes and handled rate negotiations</li>
+          <li>Troubleshot operational challenges in high-pressure environment</li>
+        </ul>
       </div>
 
-    </div>
-
-  </section>
-
-  <!-- Education & Projects (condensed for completeness) -->
-
-  <section id="education" class="py-5 bg-light">
-
-    <div class="container">
-
-      <h2 class="section-title">Education</h2>
-
-      <div class="row g-4 text-center">
-
-        <div class="col-md-4" data-aos="fade-up">
-
-          <div class="card h-100">
-
-            <div class="card-body">
-
-              <h5>BSCS</h5>
-
-              <p>University of Lahore • In Progress</p>
-
-            </div>
-
-          </div>
-
-        </div>
-
-        <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
-
-          <div class="card h-100">
-
-            <div class="card-body">
-
-              <h5>Intermediate (ICS)</h5>
-
-              <p>Unique College • 718/1200</p>
-
-            </div>
-
-          </div>
-
-        </div>
-
-        <div class="col-md-4" data-aos="fade-up" data-aos-delay="400">
-
-          <div class="card h-100">
-
-            <div class="card-body">
-
-              <h5>Matriculation</h5>
-
-              <p>Unique High School • 916/1100</p>
-
-            </div>
-
-          </div>
-
-        </div>
-
+      <div class="timeline-item glass-card p-4" data-aos="fade-up" data-aos-delay="400">
+        <div class="timeline-dot"></div>
+        <h5>Customer Support Agent (Live Chat)</h5>
+        <p class="text-muted mb-2">Dec 2024 – Feb 2025 • Lahore</p>
+        <ul class="mb-0">
+          <li>Delivered real-time technical support to global users</li>
+          <li>Resolved complex queries with high satisfaction ratings</li>
+        </ul>
       </div>
-
     </div>
+  </div>
+</section>
 
-  </section>
-
-  <section id="projects" class="py-5">
-
-    <div class="container">
-
-      <h2 class="section-title">Cybersecurity Labs & Projects</h2>
-
-      <div class="row g-4">
-
-        <div class="col-md-4" data-aos="fade-up">
-
-          <div class="card h-100">
-
-            <div class="card-body">
-
-              <h5>Hack The Box</h5>
-
-              <p>Starting Point & Tier 1 machines – enumeration & exploitation</p>
-
-            </div>
-
-          </div>
-
+<!-- Education -->
+<section id="education" class="py-5">
+  <div class="container">
+    <h2 class="section-title">Education</h2>
+    <div class="row g-4">
+      <div class="col-md-4" data-aos="fade-up">
+        <div class="glass-card p-4 text-center">
+          <h5>BSCS</h5>
+          <p>University of Lahore (UOL)</p>
+          <p class="text-muted small">2nd Semester (In Progress)</p>
         </div>
-
-        <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
-
-          <div class="card h-100">
-
-            <div class="card-body">
-
-              <h5>TryHackMe</h5>
-
-              <p>SOC Level 1 – log analysis, phishing defense, monitoring</p>
-
-            </div>
-
-          </div>
-
-        </div>
-
-        <div class="col-md-4" data-aos="fade-up" data-aos-delay="400">
-
-          <div class="card h-100">
-
-            <div class="card-body">
-
-              <h5>Personal Virtual Lab</h5>
-
-              <p>Linux VMs for administration & network security</p>
-
-            </div>
-
-          </div>
-
-        </div>
-
       </div>
-
+      <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+        <div class="glass-card p-4 text-center">
+          <h5>Intermediate (ICS/Pre-Engineering)</h5>
+          <p>Unique College, Lahore</p>
+          <p class="text-muted small">718 / 1200</p>
+        </div>
+      </div>
+      <div class="col-md-4" data-aos="fade-up" data-aos-delay="400">
+        <div class="glass-card p-4 text-center">
+          <h5>Matriculation</h5>
+          <p>Unique High School, Lahore</p>
+          <p class="text-muted small">916 / 1100</p>
+        </div>
+      </div>
     </div>
+  </div>
+</section>
 
-  </section>
+<!-- Projects -->
+<section id="projects" class="py-5 bg-black bg-opacity-50">
+  <div class="container">
+    <h2 class="section-title">Cybersecurity Labs & Projects</h2>
+    <div class="row g-4">
+      <div class="col-md-4" data-aos="fade-up">
+        <div class="glass-card p-4">
+          <h5>Hack The Box</h5>
+          <p>Actively solving Starting Point and Tier 1 machines; focusing on system enumeration and exploitation fundamentals (ongoing).</p>
+        </div>
+      </div>
+      <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+        <div class="glass-card p-4">
+          <h5>TryHackMe</h5>
+          <p>Currently completing SOC Level 1 path; gaining hands-on experience in log analysis, phishing defense, and security monitoring (ongoing).</p>
+        </div>
+      </div>
+      <div class="col-md-4" data-aos="fade-up" data-aos-delay="400">
+        <div class="glass-card p-4">
+          <h5>Personal Virtual Lab</h5>
+          <p>Configured virtualized environment to practice Linux administration and network security monitoring (ongoing).</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-  <!-- Footer -->
+<!-- Footer -->
+<footer class="bg-black text-center py-4 mt-5">
+  <p class="mb-0">© 2026 Fawaz Hassan • Built with passion & Bootstrap 5</p>
+</footer>
 
-  <footer class="bg-dark text-white text-center py-4">
+<!-- Scripts -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+<script>
+  AOS.init({ duration: 800, once: true });
 
-    <p>© 2026 Fawaz Hassan • Built with Bootstrap 5</p>
-
-  </footer>
-
-  <!-- Scripts -->
-
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-
-  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
-
-  <script>
-
-    AOS.init({ duration: 800, once: true });
-
-    window.addEventListener('load', () => {
-
-      document.querySelectorAll('.progress-fill').forEach(bar => {
-
-        const w = bar.style.width;
-
-        bar.style.width = '0';
-
-        setTimeout(() => bar.style.width = w, 200);
-
-      });
-
+  window.addEventListener('load', () => {
+    document.querySelectorAll('.progress-fill').forEach(bar => {
+      const width = bar.style.width;
+      bar.style.width = '0';
+      setTimeout(() => bar.style.width = width, 400);
     });
-
-  </script>
-
+  });
+</script>
 </body>
-
-
 </html>
